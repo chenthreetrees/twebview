@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#eeeeee"
+                android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
+
+
+    <FrameLayout android:id="@+id/web_flyt"
+                 android:layout_below="@id/titleLayout"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent">
+
+    </FrameLayout>
+
+    <include
+        android:id="@+id/web_load_error_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/titleLayout"
+        layout="@layout/include_web_load_error"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/webview_loadprogress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dip"
+        android:layout_below="@id/titleLayout"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/progressbar_bg_web_load_style" />
+
+</RelativeLayout>

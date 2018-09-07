@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="application/json;charset=UTF-8">
+    <title>test</title>
+
+    <script>
+
+    function clickprompt(){
+        // 调用prompt（）
+        var result=prompt("js://webview?arg1=111&arg2=222");
+        alert("android result:" + result);
+    }
+
+    function clickandroid(){
+        window.android.callAndroid("333");
+    }
+
+// Android需要调用的方法
+   function callJS(){
+      alert("Android调用了JS的callJS方法");
+      var result = "hello android";
+      return result;
+   }
+
+   </script>
+</head>
+
+<body>
+<button type="button" id="button2" onclick="clickandroid()">方法1：点击调用Android代码</button>
+</body>
+
+<!-- 点击按钮则调用clickprompt()  -->
+<body>
+<button type="button" id="button1" onclick="clickprompt()">方法2(通过prompt)：点击调用Android代码</button>
+</body>
+
+</html>
