@@ -22,6 +22,19 @@ js调用的时候，使用`var result=prompt("js://demo?arg1=111&arg2=222")`，�
 
 ## 引用
 
+项目的gradle文件：
+```
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+在app的gradle文件引用依赖：
+```
+compile 'com.github.chenthreetrees:twebview:1.0.0'
+```
+
 ## 使用
 
 创建具体的业务处理类，该类继承至WebLogic，重写以下方法:
