@@ -54,11 +54,15 @@ public class DefaultWebDelegate extends CommonDelegate implements IWebViewInitLi
     private WebView mWebView;
 
     //必须用这种方式创建WebDelegateDefault 类
-    public static <T extends WebLogic>DefaultWebDelegate create(Class<T> webLogic,String url)
+    public static <T extends WebLogic>DefaultWebDelegate create(Class<T> webLogic,String url,Bundle data)
     {
         final Bundle bundle = new Bundle();
         bundle.putString(WebDelegate.URL_KEY, url);
         bundle.putString(WebDelegate.LOGIC_CLASS_NAME,webLogic.getName());
+        if(data != null)
+        {
+            bundle.putAll(data);
+        }
         final DefaultWebDelegate delegate = new DefaultWebDelegate();
         delegate.setArguments(bundle);
         return delegate;
@@ -237,12 +241,15 @@ public class DefaultWebDelegate extends CommonDelegate implements IWebViewInitLi
     @Override
     public void updateProgress(int newProgress)
     {
-        if (newProgress == 100) {
-            mProgressbar.setVisibility(View.GONE);
-            mProgressbar.setProgress(0);
-        } else {
-            mProgressbar.setVisibility(View.VISIBLE);
-            mProgressbar.setProgress(newProgress);
+        if(mWebLogic.isShowProgressbar())
+        {
+            if (newProgress == 100) {
+                mProgressbar.setVisibility(View.GONE);
+                mProgressbar.setProgress(0);
+            } else {
+                mProgressbar.setVisibility(View.VISIBLE);
+                mProgressbar.setProgress(newProgress);
+            }
         }
         mWebLogic.updateProgress(newProgress);
     }

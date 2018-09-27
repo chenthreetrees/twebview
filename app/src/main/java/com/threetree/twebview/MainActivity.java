@@ -24,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private void getContentView()
     {
 //        mFragment = DefaultWebDelegate.create(MenuLogic.class, "https://www.zhihu.com");
-        mFragment = DefaultWebDelegate.create(MenuLogic.class, "js_test.html");
+        Bundle bundle = new Bundle();
+        bundle.putString("test","test");
+        mFragment = DefaultWebDelegate.create(MenuLogic.class, "js_test.html",bundle);
 //        mFragment = DefaultWebDelegate.create(MenuLogic.class, "http://pvp.592you.com/");
         FragmentManager tm = getSupportFragmentManager();
         FragmentTransaction t = tm.beginTransaction();

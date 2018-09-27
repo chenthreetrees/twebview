@@ -1,5 +1,6 @@
 package com.threetree.ttwebview;
 
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.webkit.JsPromptResult;
@@ -13,7 +14,7 @@ public abstract class WebLogic {
     private WebDelegate mWebDelegate;
     protected FragmentActivity mActivity;
 
-    public WebLogic(WebDelegate webDelegate)
+    public WebLogic(WebDelegate webDelegate,Bundle args)
     {
         mWebDelegate = webDelegate;
         mActivity = mWebDelegate.getWebActivity();
@@ -110,6 +111,11 @@ public abstract class WebLogic {
     public void callJs(String js,ValueCallback<String> callback)
     {
         mWebDelegate.callJs(js,callback);
+    }
+
+    public boolean isShowProgressbar()
+    {
+        return true;
     }
 
 }

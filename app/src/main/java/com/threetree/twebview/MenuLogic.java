@@ -1,6 +1,7 @@
 package com.threetree.twebview;
 
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsPromptResult;
@@ -23,9 +24,9 @@ public class MenuLogic extends WebLogic {
     TextView mTitleTv;
     TextView mMenuTv;
 
-    public MenuLogic(WebDelegate webDelegate)
+    public MenuLogic(WebDelegate webDelegate,Bundle args)
     {
-        super(webDelegate);
+        super(webDelegate,args);
     }
 
     @Override

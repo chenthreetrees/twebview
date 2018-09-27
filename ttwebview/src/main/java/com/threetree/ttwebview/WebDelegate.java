@@ -53,8 +53,8 @@ public abstract class WebDelegate extends BaseDelegate {
     {
         try {
             Class<T> tempTaskClassName = (Class<T>) Class.forName(args.getString(LOGIC_CLASS_NAME));
-            Constructor<T> con = tempTaskClassName.getConstructor(WebDelegate.class);
-            mWebLogic = (T) con.newInstance(this);
+            Constructor<T> con = tempTaskClassName.getConstructor(WebDelegate.class,Bundle.class);
+            mWebLogic = (T) con.newInstance(this,args);
         } catch (Exception e) {
             e.printStackTrace();
         }
