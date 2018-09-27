@@ -150,6 +150,11 @@ public class DefaultWebDelegate extends CommonDelegate implements IWebViewInitLi
         return this;
     }
 
+    public WebLogic getLogic()
+    {
+        return mWebLogic;
+    }
+
     //基类Delegate中封装的方法,Fragment会加载这个方法返回的view或者layout布局
     @Override
     public Object setLayout()
