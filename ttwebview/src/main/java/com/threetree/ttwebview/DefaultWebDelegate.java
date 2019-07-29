@@ -68,6 +68,22 @@ public class DefaultWebDelegate extends CommonDelegate implements IWebViewInitLi
         return delegate;
     }
 
+    //必须用这种方式创建WebDelegateDefault 类
+    public static <T extends WebLogic>DefaultWebDelegate create(Class<T> webLogic,String url,boolean isSdcard,Bundle data)
+    {
+        final Bundle bundle = new Bundle();
+        bundle.putString(WebDelegate.URL_KEY, url);
+        bundle.putBoolean(WebDelegate.IS_SDCARD, isSdcard);
+        bundle.putString(WebDelegate.LOGIC_CLASS_NAME,webLogic.getName());
+        if(data != null)
+        {
+            bundle.putAll(data);
+        }
+        final DefaultWebDelegate delegate = new DefaultWebDelegate();
+        delegate.setArguments(bundle);
+        return delegate;
+    }
+
     @Override
     public void initWebViewSettings(WebView webView)
     {
@@ -199,7 +215,7 @@ public class DefaultWebDelegate extends CommonDelegate implements IWebViewInitLi
 
         if (getUrl() != null) {
             //进行页面加载
-            Router.getInstance().loadPage(this, getUrl());
+            Router.getInstance().loadPage(this, getUrl(),isSdCard());
         }
     }
 

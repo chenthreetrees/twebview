@@ -27,12 +27,18 @@ public abstract class WebDelegate extends BaseDelegate {
      */
     public static final String URL_KEY = "url";
 
+    /**
+     * 是否从sd卡读取html等文件
+     */
+    public static final String IS_SDCARD = "is_sdcard";
+
     public static final String WEB_SETTINGS = "web_settings";
 
     private WebView mWebView = null;
     //使用弱引用防止内存泄漏
     private final ReferenceQueue<WebView> WEB_VIEW_QUEUE = new ReferenceQueue<>();
     private String mUrl = null;
+    private boolean isSdCard = false;
     private boolean mIsWebViewAvailable = false;
 
     protected WebLogic mWebLogic;
@@ -45,6 +51,7 @@ public abstract class WebDelegate extends BaseDelegate {
         super.onCreate(savedInstanceState);
         final Bundle args = getArguments();
         mUrl = args.getString(URL_KEY);
+        isSdCard = args.getBoolean(IS_SDCARD,false);
         initWebView();
         initLogic(args);
     }
@@ -136,6 +143,10 @@ public abstract class WebDelegate extends BaseDelegate {
             throw new NullPointerException("WebView is null!");
         }
         return mUrl;
+    }
+
+    public boolean isSdCard(){
+        return isSdCard;
     }
 
     /**
