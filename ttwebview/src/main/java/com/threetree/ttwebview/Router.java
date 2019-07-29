@@ -18,7 +18,10 @@ public class Router {
         return Holder.INSTANCE;
     }
     public final void loadPage(WebDelegate delegate, String url) {
-        loadPage(delegate.getWebView(), url);
+        loadPage(delegate.getWebView(), url,false);
+    }
+    public final void loadPage(WebDelegate delegate, String url,boolean isSdCard){
+        loadPage(delegate.getWebView(), url,isSdCard);
     }
     private void loadWebPage(WebView webView, String url) {
         if (webView != null) {
@@ -29,13 +32,20 @@ public class Router {
     }
     //在assets文件夹中的本地页面(和res文件夹同级)
     private void loadLocalPage(WebView webView, String url) {
-        loadWebPage(webView, "file:///android_asset/" + url);
+        loadWebPage(webView, url);
     }
-    private void loadPage(WebView webView, String url) {
-        if (URLUtil.isNetworkUrl(url) || URLUtil.isAssetUrl(url)) {
+
+    private void loadPage(WebView webView, String url,boolean isSdCard) {
+
+        if(isSdCard){
+            String path = "file:///" + url;
+            loadLocalPage(webView, path);
+        }
+        else if (URLUtil.isNetworkUrl(url) || URLUtil.isAssetUrl(url)) {
             loadWebPage(webView, url);
         } else {
-            loadLocalPage(webView, url);
+            String path = "file:///android_asset/" + url;
+            loadLocalPage(webView, path);
         }
     }
 }

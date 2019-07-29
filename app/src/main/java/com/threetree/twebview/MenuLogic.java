@@ -36,6 +36,12 @@ public class MenuLogic extends WebLogic {
     }
 
     @Override
+    public boolean isShowProgressbar()
+    {
+        return false;
+    }
+
+    @Override
     public View getTitleView()
     {
         View view = View.inflate(mActivity,R.layout.include_common_title_bar,null);
@@ -69,6 +75,11 @@ public class MenuLogic extends WebLogic {
         return view;
     }
 
+    @Override
+    public void loadEnd()
+    {
+
+    }
 
     @Override
     public void updateTitle(String title)
